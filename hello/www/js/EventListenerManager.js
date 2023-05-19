@@ -12,8 +12,8 @@ class EventListenerManager {
   }
 
   #registerButtonClickEvent() {
-    document.addEventListener("click", this.#clickGeolocationButton());
-    document.addEventListener("click", this.#clickBatteryStatusButton());
+    const geolocationButton = document.getElementById("geolocation");
+    geolocationButton.addEventListener("click", this.#clickGeolocationButton());
   }
 
   // Device ready event
