@@ -17,11 +17,10 @@
  * under the License.
  */
 
+import GeolocationService from "./GeolocationService.js";
 // Wait for the deviceready event before using any of Cordova's device APIs.
 // See https://cordova.apache.org/docs/en/latest/cordova/events/events.html#deviceready
 document.addEventListener('deviceready', onDeviceReady, false);
-
-getPosition(); // For execution on the web
 
 function onDeviceReady() {
     // Cordova is now initialized. Have fun!
@@ -30,12 +29,5 @@ function onDeviceReady() {
     document.getElementById('deviceready').classList.add('ready');
 }
 
-function geolocationSuccess(position) {
-    console.log("navigator.geolocation works well");
-    console.log(position);
-    alert(`latitude: ${position.coords.latitude} \nlongitude: ${position.coords.longitude}`);
-}
-
-function getPosition() {
-    navigator.geolocation.getCurrentPosition(geolocationSuccess);
-}
+const geolocationService = new GeolocationService();
+geolocationService.getPosition(); // For execution on the web
