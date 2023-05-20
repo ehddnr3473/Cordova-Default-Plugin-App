@@ -11,14 +11,17 @@ class EventListenerManager {
     this.#registerButtonClickEvent();
   }
 
-  #registerButtonClickEvent() {
-    const geolocationButton = document.getElementById("geolocation");
-    geolocationButton.addEventListener("click", this.#clickGeolocationButton());
-  }
-
   // Device ready event
   #onDeviceReady() {
+    
+  }
 
+  #registerButtonClickEvent() {
+    const geolocationButton = document.getElementById("geolocation");
+    geolocationButton.addEventListener("click", this.#clickGeolocationButton);
+
+    const deviceButton = document.getElementById("device");
+    deviceButton.addEventListener("click", this.#clickDeviceButton);
   }
 
   // Battery event
@@ -32,6 +35,17 @@ class EventListenerManager {
 
   #onBatteryCritical(status) {
     alert("Battery Level Critical " + status.level + "%\nRecharge Soon!");
+  }
+
+  #clickDeviceButton() {
+    alert(`${device.cordova}
+    \n${device.model}
+    \n${device.platform}
+    \n${device.uuid}
+    \n${device.version}
+    \n${device.manufacturer}
+    \n${device.isVirtual}
+    \n${device.serial}`);
   }
 
   // Geolocation event
