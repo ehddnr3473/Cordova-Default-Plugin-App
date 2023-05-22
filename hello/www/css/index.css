@@ -26,3 +26,11 @@ body {
   justify-content: center;
   max-width: 450px;
 }
+
+#dialogs {
+  background-color: darkolivegreen;
+}
+
+#device {
+  background-color: dodgerblue;
+}
