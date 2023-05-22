@@ -34,24 +34,38 @@ function clickBeepButton() {
   navigator.notification.beep(2);
 }
 
-// Device Ready
-document.addEventListener('deviceready', function() {
-  onDeviceReady()
-}, false);
-
-function onDeviceReady() {
-    
+// Functions of Geolocation
+function clickGeolocationButton() {
+  navigator.geolocation.getCurrentPosition(onGeolocationSuccess, onGeoLocationError);
 }
 
-// Event register of Dialogs
-const alertButton = document.getElementById("alert");
-alertButton.addEventListener("click", clickAlertButton);
+function onGeolocationSuccess(position) {
+  navigator.notification.alert(`latitude: ${position.coords.latitude} \nlongitude: ${position.coords.longitude}`);
+}
 
-const confirmButton = document.getElementById("confirm");
-confirmButton.addEventListener("click", clickConfirmButton);
+function onGeoLocationError(error) {
+  navigator.notification.alert("code: " + error.code + "\n" + "message: " + error.message + "\n");
+}
 
-const promptButton = document.getElementById("prompt");
-promptButton.addEventListener("click", clickPromptButton);
+// Device Ready
+function onDeviceReady() {
+  // Event register of Dialogs
+  const alertButton = document.getElementById("alert");
+  alertButton.addEventListener("click", clickAlertButton);
 
-const beepButton = document.getElementById("beep");
-beepButton.addEventListener("click", clickBeepButton);
+  const confirmButton = document.getElementById("confirm");
+  confirmButton.addEventListener("click", clickConfirmButton);
+
+  const promptButton = document.getElementById("prompt");
+  promptButton.addEventListener("click", clickPromptButton);
+
+  const beepButton = document.getElementById("beep");
+  beepButton.addEventListener("click", clickBeepButton);
+
+  // Event register of Geolocation
+  const geolocationButton = document.getElementById("geolocation");
+  geolocationButton.addEventListener("click", clickGeolocationButton);
+}
+
+document.addEventListener('deviceready', onDeviceReady, false);
+
