@@ -47,6 +47,19 @@ function onGeoLocationError(error) {
   navigator.notification.alert("code: " + error.code + "\n" + "message: " + error.message + "\n");
 }
 
+// Function of Battery Status
+function onBatteryStatus(status) {
+  navigator.notification.alert("Level: " + status.level + " isPlugged: " + status.isPluged);
+}
+
+function onBatteryLow(status) {
+  navigator.notification.alert("Battery Level Low " + status.level + "%");
+}
+
+function onBatteryCritical(status) {
+  navigator.notification.alert("Battery Level Critical " + status.level + "%\nRecharge Soon!");
+}
+
 // Device Ready
 function onDeviceReady() {
   // Event register of Dialogs
@@ -65,6 +78,11 @@ function onDeviceReady() {
   // Event register of Geolocation
   const geolocationButton = document.getElementById("geolocation");
   geolocationButton.addEventListener("click", clickGeolocationButton);
+
+  // Event register of Battery Status
+  window.addEventListener("batterystatus", onBatteryStatus, false);
+  window.addEventListener("batterylow", onBatteryLow, false);
+  window.addEventListener("batterycritical", onBatteryCritical, false);
 }
 
 document.addEventListener('deviceready', onDeviceReady, false);
