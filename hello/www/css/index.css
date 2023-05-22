@@ -1,9 +1,10 @@
+body {
+  text-align: center;
+}
+
 .container {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  grid-template-rows: repeat(7, 1fr);
-  grid-gap: 10px;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   height: 100vh;
 }
@@ -12,5 +13,11 @@
   width: 200px;
   height: 40px;
   padding: 10px 20px;
-  margin: 0 10px;
+  margin: 10px;
+  border: 2px solid black;
+}
+
+.dialogs {
+  border: 3px solid black;
+  background-color: dodgerblue;
 }
