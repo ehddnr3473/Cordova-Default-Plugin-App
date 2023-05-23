@@ -38,3 +38,11 @@ body {
 #screen-orientation {
   background-color: tomato;
 }
+
+#inappbrowser {
+  background-color: darkred;
+}
+
+#inappbrowser > * {
+  margin: 10px;
+}
