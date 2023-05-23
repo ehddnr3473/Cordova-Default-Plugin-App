@@ -47,7 +47,7 @@ function onGeoLocationError(error) {
   navigator.notification.alert("code: " + error.code + "\n" + "message: " + error.message + "\n");
 }
 
-// Function of Battery Status
+// Functions of Battery Status
 function onBatteryStatus(status) {
   navigator.notification.alert("Level: " + status.level + " isPlugged: " + status.isPluged);
 }
@@ -60,7 +60,7 @@ function onBatteryCritical(status) {
   navigator.notification.alert("Battery Level Critical " + status.level + "%\nRecharge Soon!");
 }
 
-// Fuction of Device
+// Fuctions of Device
 function clickCordovaButton() {
   navigator.notification.alert(device.cordova);
 }
@@ -91,6 +91,22 @@ function clickIsVirtualButton() {
 
 function clickSerialButton() {
   navigator.notification.alert(device.serial);
+}
+
+// Functions of Camera
+function clickCameraButton() {
+  navigator.camera.getPicture(cameraSuccess, cameraError, { quality: 50 });
+}
+
+function cameraSuccess(imageData) {
+  var body = document.querySelector("body");
+  var img = document.createElement("img");
+  img.src = "data:image/jpeg;base64," + imageData;
+  body.appendChild(img);
+}
+
+function cameraError(message) {
+  navigator.notification.alert("Failed because: " + message);
 }
 
 // Device Ready
@@ -135,6 +151,10 @@ function onDeviceReady() {
   manufacturerButton.addEventListener("click", clickManufacturerButton);
   isVirtualButton.addEventListener("click", clickIsVirtualButton);
   serialButton.addEventListener("click", clickSerialButton);
+
+  // Event register of Camera
+  const cameraButton = document.getElementById("camera");
+  cameraButton.addEventListener("click", clickCameraButton);
 }
 
 document.addEventListener('deviceready', onDeviceReady, false);
