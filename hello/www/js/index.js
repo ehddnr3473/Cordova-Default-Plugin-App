@@ -49,7 +49,7 @@ function onGeoLocationError(error) {
 
 // Functions of Battery Status
 function onBatteryStatus(status) {
-  navigator.notification.alert("Level: " + status.level + " isPlugged: " + status.isPluged);
+  navigator.notification.alert("Level: " + status.level + " isPlugged: " + status.isPlugged);
 }
 
 function onBatteryLow(status) {
