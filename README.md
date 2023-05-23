@@ -1,1 +1,1 @@
-# Cordova-Tutorial-App
+# Cordova-Default-Plugin-App
