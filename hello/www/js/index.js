@@ -109,6 +109,23 @@ function cameraError(message) {
   navigator.notification.alert("Failed because: " + message);
 }
 
+// Function of Network Information
+function clickNetworkInformationButton() {
+  let networkState = navigator.connection.type;
+
+  let states = {};
+  states[Connection.UNKNOWN]  = 'Unknown connection';
+  states[Connection.ETHERNET] = 'Ethernet connection';
+  states[Connection.WIFI]     = 'WiFi connection';
+  states[Connection.CELL_2G]  = 'Cell 2G connection';
+  states[Connection.CELL_3G]  = 'Cell 3G connection';
+  states[Connection.CELL_4G]  = 'Cell 4G connection';
+  states[Connection.CELL]     = 'Cell generic connection';
+  states[Connection.NONE]     = 'No network connection';
+
+  navigator.notification.alert("Connection type: " + states[networkState]);
+}
+
 // Device Ready
 function onDeviceReady() {
   // Event register of Dialogs
@@ -155,6 +172,10 @@ function onDeviceReady() {
   // Event register of Camera
   const cameraButton = document.getElementById("camera");
   cameraButton.addEventListener("click", clickCameraButton);
+
+  // Event register of Network Information
+  const networkInformationButton = document.getElementById("network-information");
+  networkInformationButton.addEventListener("click", clickNetworkInformationButton);
 }
 
 document.addEventListener('deviceready', onDeviceReady, false);
