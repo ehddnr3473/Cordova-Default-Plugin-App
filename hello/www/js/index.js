@@ -222,13 +222,13 @@ function onDeviceReady() {
     navigator.notification.alert("Statusbar tapped.");
 
     function scrollToTopSlowly(duration) {
-      var scrollHeight = window.scrollY;
-      var scrollStep = Math.PI / (duration / 15);
-      var cosParameter = scrollHeight / 2;
-      var scrollCount = 0;
-      var scrollMargin;
+      let scrollHeight = window.scrollY;
+      let scrollStep = Math.PI / (duration / 15);
+      let cosParameter = scrollHeight / 2;
+      let scrollCount = 0;
+      let scrollMargin;
 
-      var scrollInterval = setInterval(function() {
+      let scrollInterval = setInterval(function() {
           if (window.scrollY != 0) {
               scrollCount = scrollCount + 1;
               scrollMargin = cosParameter - cosParameter * Math.cos(scrollCount * scrollStep);
