@@ -147,6 +147,39 @@ function orientationDidChange() {
   navigator.notification.alert("Orientation did change: " + screen.orientation.type);
 }
 
+// Functions of Inappbrowser
+function clickInappbrowserButton(url) {
+  const target = "_blank"
+  const options = "location=no, hidden=yes"
+
+  inAppBrowserRef = cordova.InAppBrowser.open(url, target, options);
+  inAppBrowserRef.addEventListener("loadstart", loadStartCallBack);
+  inAppBrowserRef.addEventListener("loadstop", loadStopCallBack);
+  inAppBrowserRef.addEventListener("loaderror", loadErrorCallBack);
+}
+
+function loadStartCallBack() {
+  $('#status-message').text("loading please wait ...");
+}
+
+function loadStopCallBack() {
+  if (inAppBrowserRef != undefined) {
+      inAppBrowserRef.show();
+  }
+}
+
+function loadErrorCallBack(params) {
+  $('#status-message').text("");
+  var scriptErrorMesssage = 
+    "alert('Sorry we cannot open that page. Message from the server is : " + 
+    params.message + "');"
+
+  inAppBrowserRef.executeScript({ code: scriptErrorMesssage }, executeScriptCallBack);
+  inAppBrowserRef.close();
+  inAppBrowserRef = undefined;
+}
+
+
 // Device Ready
 function onDeviceReady() {
   // Event register of Dialogs
@@ -241,6 +274,16 @@ function onDeviceReady() {
 
     scrollToTopSlowly(300);
   });
+
+  // Event register of Inappbrowser
+  const inappbrowserButton = document.getElementById("inappbrowser-btn");
+  inappbrowserButton.addEventListener("click", function() {
+    const input = document.getElementById("input-url");
+    const url = input.value;
+    input.value = "";
+    clickInappbrowserButton(url)
+  });
 }
 
 document.addEventListener("deviceready", onDeviceReady, false);
+let inAppBrowserRef;
