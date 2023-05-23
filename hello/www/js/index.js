@@ -283,6 +283,13 @@ function onDeviceReady() {
     input.value = "";
     clickInappbrowserButton(url)
   });
+
+  // Event register of Vibration
+  // This doesn't work in simulator.
+  const vibrationButton = document.getElementById("vibration");
+  vibrationButton.addEventListener("click", function() {
+    navigator.vibrate(3000);
+  });
 }
 
 document.addEventListener("deviceready", onDeviceReady, false);
