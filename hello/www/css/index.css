@@ -34,3 +34,7 @@ body {
 #device {
   background-color: dodgerblue;
 }
+
+#screen-orientation {
+  background-color: tomato;
+}

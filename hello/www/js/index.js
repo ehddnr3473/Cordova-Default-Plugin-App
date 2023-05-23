@@ -130,6 +130,23 @@ function onOffline() {
   navigator.notification.alert("The network connection was lost.");
 }
 
+// Functions of Screen Orientation
+function clickLockButton() {
+  screen.orientation.lock(screen.orientation.type);
+}
+
+function clickUnlockButton() {
+  screen.orientation.unlock();
+}
+
+function clickOrientationInformationButton() {
+  navigator.notification.alert(screen.orientation.type);
+}
+
+function orientationDidChange() {
+  navigator.notification.alert("Orientation did change: " + screen.orientation.type);
+}
+
 // Device Ready
 function onDeviceReady() {
   // Event register of Dialogs
@@ -182,6 +199,16 @@ function onDeviceReady() {
 
   const networkInformationButton = document.getElementById("network-information");
   networkInformationButton.addEventListener("click", clickNetworkInformationButton);
+
+  // Event register of Screen Orientation
+  const lockButton = document.getElementById("lock");
+  const unlockButton = document.getElementById("unlock");
+  const orientationInformationButton = document.getElementById("orientation-information");
+
+  lockButton.addEventListener("click", clickLockButton);
+  unlockButton.addEventListener("click", clickUnlockButton);
+  orientationInformationButton.addEventListener("click", clickOrientationInformationButton);
+  window.addEventListener("orientationchange", orientationDidChange);
 }
 
 document.addEventListener('deviceready', onDeviceReady, false);
