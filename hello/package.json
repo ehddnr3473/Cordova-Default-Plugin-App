@@ -19,6 +19,7 @@
     "cordova-plugin-device": "^2.1.0",
     "cordova-plugin-dialogs": "^2.0.2",
     "cordova-plugin-geolocation": "^4.1.0",
+    "cordova-plugin-inappbrowser": "^5.0.0",
     "cordova-plugin-network-information": "^3.0.0",
     "cordova-plugin-screen-orientation": "^3.0.3",
     "cordova-plugin-splashscreen": "^6.0.2",
@@ -39,7 +40,8 @@
       "cordova-plugin-network-information": {},
       "cordova-plugin-screen-orientation": {},
       "cordova-plugin-statusbar": {},
-      "cordova-plugin-splashscreen": {}
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-inappbrowser": {}
     }
   }
 }
