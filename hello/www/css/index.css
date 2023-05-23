@@ -46,3 +46,7 @@ body {
 #inappbrowser > * {
   margin: 10px;
 }
+
+#other-features {
+  background-color: yellowgreen;
+}
