@@ -109,7 +109,7 @@ function cameraError(message) {
   navigator.notification.alert("Failed because: " + message);
 }
 
-// Function of Network Information
+// Functions of Network Information
 function clickNetworkInformationButton() {
   let networkState = navigator.connection.type;
 
@@ -124,6 +124,10 @@ function clickNetworkInformationButton() {
   states[Connection.NONE]     = 'No network connection';
 
   navigator.notification.alert("Connection type: " + states[networkState]);
+}
+
+function onOffline() {
+  navigator.notification.alert("The network connection was lost.");
 }
 
 // Device Ready
@@ -174,6 +178,8 @@ function onDeviceReady() {
   cameraButton.addEventListener("click", clickCameraButton);
 
   // Event register of Network Information
+  document.addEventListener("offline", onOffline, false);
+
   const networkInformationButton = document.getElementById("network-information");
   networkInformationButton.addEventListener("click", clickNetworkInformationButton);
 }
