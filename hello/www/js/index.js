@@ -209,6 +209,38 @@ function onDeviceReady() {
   unlockButton.addEventListener("click", clickUnlockButton);
   orientationInformationButton.addEventListener("click", clickOrientationInformationButton);
   window.addEventListener("orientationchange", orientationDidChange);
+
+  // Event register of Statusbar
+  /* 
+    scrollToTop 외에 기능이 필요없다면, 이 커스텀 이벤트 함수는 필요없음.
+    config.xml - StatusBarDefaultScrollToTop의 value 속성을 true로 설정해주면 됨.
+  */
+  window.addEventListener("statusTap", function() {
+    // Scroll fast
+    // window.scrollTo(0, 0);
+    
+    navigator.notification.alert("Statusbar tapped.");
+
+    function scrollToTopSlowly(duration) {
+      var scrollHeight = window.scrollY;
+      var scrollStep = Math.PI / (duration / 15);
+      var cosParameter = scrollHeight / 2;
+      var scrollCount = 0;
+      var scrollMargin;
+
+      var scrollInterval = setInterval(function() {
+          if (window.scrollY != 0) {
+              scrollCount = scrollCount + 1;
+              scrollMargin = cosParameter - cosParameter * Math.cos(scrollCount * scrollStep);
+              window.scrollTo(0, (scrollHeight - scrollMargin));
+          } else {
+              clearInterval(scrollInterval);
+          }
+      }, 15);
+    }
+
+    scrollToTopSlowly(300);
+  });
 }
 
-document.addEventListener('deviceready', onDeviceReady, false);
+document.addEventListener("deviceready", onDeviceReady, false);
