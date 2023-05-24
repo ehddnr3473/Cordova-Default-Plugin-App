@@ -290,6 +290,20 @@ function onDeviceReady() {
   vibrationButton.addEventListener("click", function() {
     navigator.vibrate(3000);
   });
+
+  const customButton = document.getElementById("custom");
+  customButton.addEventListener("click", function() {
+    cordova.exec(
+      function(winParam) {
+        navigator.notification.alert(winParam, null, "Received message", "OK");
+      }, 
+      function(error) {
+        navigator.notification.alert("Error occured!: " + error);
+      }, 
+      "CordovaSamplePluginSwift", 
+      "greet"
+    );
+  })
 }
 
 document.addEventListener("deviceready", onDeviceReady, false);
