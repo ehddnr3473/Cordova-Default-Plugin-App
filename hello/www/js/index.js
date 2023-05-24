@@ -291,6 +291,7 @@ function onDeviceReady() {
     navigator.vibrate(3000);
   });
 
+  // Event register Custom plugin
   const customButton = document.getElementById("custom");
   customButton.addEventListener("click", function() {
     cordova.exec(
