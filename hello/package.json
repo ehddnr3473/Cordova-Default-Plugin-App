@@ -13,6 +13,7 @@
   "author": "Apache Cordova Team",
   "license": "Apache-2.0",
   "devDependencies": {
+    "com.yeolmok.samplepluginswift": "file:../../CordovaSamplePluginSwift/CordovaSamplePluginSwift",
     "cordova-ios": "^6.3.0",
     "cordova-plugin-battery-status": "^2.0.3",
     "cordova-plugin-camera": "^6.0.0",
@@ -45,7 +46,8 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-inappbrowser": {},
       "cordova-plugin-vibration": {},
-      "cordova-plugin-file": {}
+      "cordova-plugin-file": {},
+      "com.yeolmok.samplepluginswift": {}
     }
   }
 }
