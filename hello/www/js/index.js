@@ -291,34 +291,57 @@ function onDeviceReady() {
     navigator.vibrate(3000);
   });
 
-  // Event register Custom plugin
+  // Event register Custom plugin - greet
+  // Method 1
   const customButton = document.getElementById("greet");
   customButton.addEventListener("click", function() {
-    cordova.exec(
-      function(winParam) {
-        navigator.notification.alert(winParam, null, "Received message", "OK");
-      }, 
-      function(error) {
-        navigator.notification.alert("Error occured!: " + error);
-      }, 
-      "CordovaSamplePluginSwift", 
-      "greet"
-    );
-  })
+    sample.greet(function(winParam) {
+      navigator.notification.alert(winParam, null, "Received message", "OK");
+    }, 
+    function(error) {
+      navigator.notification.alert("Error occured!: " + error);
+    });
+  });
 
+  // Method 2
+  // customButton.addEventListener("click", function() {
+  //   cordova.exec(
+  //     function(winParam) {
+  //       navigator.notification.alert(winParam, null, "Received message", "OK");
+  //     }, 
+  //     function(error) {
+  //       navigator.notification.alert("Error occured!: " + error);
+  //     }, 
+  //     "CordovaSamplePluginSwift", 
+  //     "greet"
+  //   );
+  // });
+
+  // Event register Custom plugin - present modal view
+  // Method 1
   const modalButton = document.getElementById("modal");
   modalButton.addEventListener("click", function() {
-    cordova.exec(
-      function(winParam) {
-        navigator.notification.alert(winParam, null, "Received message", "OK");
-      }, 
-      function(error) {
-        navigator.notification.alert("Error occured!: " + error);
-      }, 
-      "CordovaSamplePluginSwift", 
-      "presentModalView"
-    );
-  })
+    sample.presentModalView(function(winParam) {
+      navigator.notification.alert(winParam, null, "Received message", "OK");
+    }, 
+    function(error) {
+      navigator.notification.alert("Error occured!: " + error);
+    });
+  });
+
+  // Method 2
+  // modalButton.addEventListener("click", function() {
+  //   cordova.exec(
+  //     function(winParam) {
+  //       navigator.notification.alert(winParam, null, "Received message", "OK");
+  //     }, 
+  //     function(error) {
+  //       navigator.notification.alert("Error occured!: " + error);
+  //     }, 
+  //     "CordovaSamplePluginSwift", 
+  //     "presentModalView"
+  //   );
+  // });
 }
 
 document.addEventListener("deviceready", onDeviceReady, false);
