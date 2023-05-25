@@ -292,7 +292,7 @@ function onDeviceReady() {
   });
 
   // Event register Custom plugin
-  const customButton = document.getElementById("custom");
+  const customButton = document.getElementById("greet");
   customButton.addEventListener("click", function() {
     cordova.exec(
       function(winParam) {
@@ -303,6 +303,20 @@ function onDeviceReady() {
       }, 
       "CordovaSamplePluginSwift", 
       "greet"
+    );
+  })
+
+  const modalButton = document.getElementById("modal");
+  modalButton.addEventListener("click", function() {
+    cordova.exec(
+      function(winParam) {
+        navigator.notification.alert(winParam, null, "Received message", "OK");
+      }, 
+      function(error) {
+        navigator.notification.alert("Error occured!: " + error);
+      }, 
+      "CordovaSamplePluginSwift", 
+      "presentModalView"
     );
   })
 }
