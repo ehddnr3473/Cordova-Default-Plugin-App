@@ -295,12 +295,14 @@ function onDeviceReady() {
   // Method 1
   const customButton = document.getElementById("greet");
   customButton.addEventListener("click", function() {
-    sample.greet(function(winParam) {
-      navigator.notification.alert(winParam, null, "Received message", "OK");
-    }, 
-    function(error) {
-      navigator.notification.alert("Error occured!: " + error);
-    });
+    sample.greet(
+      function(winParam) {
+        navigator.notification.alert(winParam, null, "Received message", "OK");
+      }, 
+      function(error) {
+        navigator.notification.alert("Error occured!: " + error);
+      }
+    );
   });
 
   // Method 2
@@ -321,12 +323,14 @@ function onDeviceReady() {
   // Method 1
   const modalButton = document.getElementById("modal");
   modalButton.addEventListener("click", function() {
-    sample.presentModalView(function(winParam) {
-      navigator.notification.alert(winParam, null, "Received message", "OK");
-    }, 
-    function(error) {
-      navigator.notification.alert("Error occured!: " + error);
-    });
+    sample.presentModalView(
+      function(winParam) {
+        navigator.notification.alert(winParam, null, "Received message", "OK");
+      }, 
+      function(error) {
+        navigator.notification.alert("Error occured!: " + error);
+      }
+    );
   });
 
   // Method 2
@@ -342,6 +346,23 @@ function onDeviceReady() {
   //     "presentModalView"
   //   );
   // });
+
+  // Event register Custom plugin - present keypad
+  const passwordButton = document.getElementById("password");
+  passwordButton.addEventListener("click", function() {
+    const onSuccess = function(winParam) {
+      navigator.notification.alert(winParam, null, "Received message", "OK");
+    };
+
+    const onError = function(error) {
+      navigator.notification.alert("Error occured!: " + error);
+    };
+
+    sample.presentPasswordView(
+      onSuccess, 
+      onError
+    );
+  });
 }
 
 document.addEventListener("deviceready", onDeviceReady, false);
